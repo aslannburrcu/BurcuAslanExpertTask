@@ -1,0 +1,92 @@
+﻿@model BurcuAslanExpertTask.Models.Sepet
+
+
+@Styles.Render("~/Content/css")
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+
+    <script>
+        $(document).on('click', '.number-spinner button', function () {
+            var btn = $(this),
+                oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+                newVal = 0;
+
+            if (btn.attr('data-dir') == 'up') {
+                newVal = parseInt(oldValue) + 1;
+            } else {
+                if (oldValue > 1) {
+                    newVal = parseInt(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
+            }
+            btn.closest('.number-spinner').find('input').val(newVal);
+        });
+    </script>
+
+</head>
+<body>
+
+    <table class="table">
+        <tr>
+            @ViewBag.usd
+            <th>Resim</th>
+            <th>Adet</th>
+            <th>Urun Adı</th>
+            <th>Acıklama</th>
+            <th>Toplam</th>
+            <th>Sepetten Çıkar</th>
+        </tr>
+
+        @foreach (var item in Model.Sepetim)
+        {
+            <tr>
+
+                <td>img</td>
+
+
+
+                <td>
+                    @using (Html.BeginForm("sepete_ekle", "Sepet"))
+                    {
+                        @*@item.adet*@
+                        <div class="input-group number-spinner">
+                            <span class="input-group-btn">
+                                <button name="urunid" class="btn btn-default" value="@item.urun.UrunId" data-dir="dwn" onclick="'this.form.submit()'">-</button>
+                            </span>
+
+                            <input name="adet" type="text" class="form-control text-center" value="@item.adet">
+
+                            <span class="input-group-btn">
+                                <button name="urunid" class="btn btn-default" value="@item.urun.UrunId" data-dir="up" onclick="'this.form.submit()'">+</button>
+                            </span>
+                        </div>
+                    }
+
+
+                </td>
+
+
+                <td>@item.urun.UrunAdi</td>
+                <td>@item.urun.Aciklama</td>
+                <td>Toplam</td>
+
+
+
+                <td>
+                    @Html.ActionLink("Sil", "sepetten_sil", new { urunid = item.urun.UrunId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+        <tr><td colspan="6">Sepet Toplamı</td></tr>
+   
+    </table>
+
+</body>
+</html>

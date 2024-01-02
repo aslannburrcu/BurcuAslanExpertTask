@@ -1,0 +1,27 @@
+﻿@model IEnumerable<BurcuAslanExpertTask.Entities.Kategori>
+
+<ul class="dropdown-menu">
+
+    @foreach (var gelen_kategori in Model)
+    {
+        <li><a class="dropdown-item" href="@Url.Action("index","Urunler", new {id=gelen_kategori.KategoriId })">@gelen_kategori.KategoriAdi</a></li>
+    }
+</ul>
+
+@{
+    ViewBag.Title = "Kategori";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+@*<address>
+    One Microsoft Way<br />
+    Redmond, WA 98052-6399<br />
+    <abbr title="Phone">P:</abbr>
+    425.555.0100
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>*@

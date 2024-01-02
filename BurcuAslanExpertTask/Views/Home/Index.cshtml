@@ -1,0 +1,15 @@
+﻿@using BurcuAslanExpertTask.Entities;
+@model IEnumerable<BurcuAslanExpertTask.Entities.Urunler>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+@if (ViewBag.UserName != null)
+{
+    <h2>Welcome, @ViewBag.UserName</h2>
+}
+
+<h2>Burası benim ana sayfam</h2>
+<b><p>burda ana sayfaya ait içeriğim olacak</p></b>

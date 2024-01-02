@@ -1,0 +1,9 @@
+﻿@model IEnumerable<BurcuAslanExpertTask.Entities.Kategori>
+
+<ul class="dropdown-menu">
+
+    @foreach (var gelen_kategori in Model)
+            {
+         <li><a class="dropdown-item" href="@Url.Action("index","Urunler", new {id=gelen_kategori.KategoriId })">@gelen_kategori.KategoriAdi</a></li>
+            }
+</ul>

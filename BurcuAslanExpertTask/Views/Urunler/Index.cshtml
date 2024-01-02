@@ -1,0 +1,67 @@
+﻿@model IPagedList<BurcuAslanExpertTask.Entities.Urunler>
+
+
+@Styles.Render("~/Content/css")
+
+@using PagedList;
+@using PagedList.Mvc;
+
+<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Ürünler Listesi</title>
+    </head>
+    <body>
+        <table class="table">
+            <tr>
+                <th>
+                    Urun Adı
+                </th>
+                <th>
+                    Marka
+                </th>
+                <th>
+                    Urun Kategorisi
+                </th>
+                <th>
+                    Stok
+                </th>
+                <th>
+                    Açıklama
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UrunAdi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UrunMarka)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UrunKategori)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UrunStok)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aciklama)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sepete Ekle", "sepete_ekle", "Sepet", new { urunid = item.UrunId }, new { @class = "btn btn-success" })
+                    </td>
+
+                </tr>
+            }
+            <tr><td colspan="5">@Html.PagedListPager(Model, sayfa => Url.Action("index", new { sayfa }), PagedListRenderOptions.ClassicPlusFirstAndLast)  </td></tr>
+
+        </table>
+    </body>
+</html>
+
+
+
